@@ -9,10 +9,21 @@
 
 <body>
     <div id="app">
-        {{message}}
+        <h1>{{ message }}</h1>
+        <input type="text"  v-model="newItemName">
+        <input type="number" v-model="newItemValue">
+        <button v-on:click="agregarItem">Agregar</button>
+        <ul>
+            <li v-for="(item, index) in items" :key="index">
+                {{ item.quantity }} - {{ item.name }} = {{ item.value }}
+                <span v-if="item.quantity === 0" style="color: red;">Producto agotado</span>
+            </li>
+            
+        </ul>
     </div>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js.js"></script>
 </body>
 
 </html>
