@@ -10,16 +10,17 @@
 <body>
     <div id="app">
         <h1>{{ message }}</h1>
-        <input type="text"  v-model="newItemName">
-        <input type="number" v-model="newItemValue">
+        <input type="text"  v-model="newItemName" placeholder="Nombre" v-on:keyup.enter="agregarItem">
+        <input type="number" v-model="newItemValue" placeholder="Valor" v-on:keyup.enter="agregarItem">
         <button v-on:click="agregarItem">Agregar</button>
         <ul>
             <li v-for="(item, index) in items" :key="index">
-                {{ item.quantity }} - {{ item.name }} = {{ item.value }}
+                {{ item.quantity }} <button @click="item.quantity++" >+</button><button @click="item.quantity--" >-</button> - {{ item.name }} = {{ item.value }}
                 <span v-if="item.quantity === 0" style="color: red;">Producto agotado</span>
             </li>
             
         </ul>
+        <h4>N° Elementos: {{ sumaTotal }}</h4>
     </div>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
