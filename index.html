@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue</title>
+    <style>
+        table{
+            text-align: center; border-collapse: collapse;
+            color: white;
+            background-color: black;
+        }
+        table, th, tr, td{
+            border: 1px solid white; 
+            padding: 0.3rem;
+        }
+        #app{
+            margin-left: 10%;
+            margin-right: 10%;
+            padding: 5%;
+            background-color: darkgray;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,13 +30,24 @@
         <input type="text"  v-model="newItemName" placeholder="Nombre" v-on:keyup.enter="agregarItem">
         <input type="number" v-model="newItemValue" placeholder="Valor" v-on:keyup.enter="agregarItem">
         <button v-on:click="agregarItem">Agregar</button>
-        <ul>
-            <li v-for="(item, index) in items" :key="index">
-                {{ item.quantity }} <button @click="item.quantity++" >+</button><button @click="item.quantity--" >-</button> - {{ item.name }} = {{ item.value }}
-                <span v-if="item.quantity === 0" style="color: red;">Producto agotado</span>
-            </li>
-            
-        </ul>
+        <hr>
+        <table >
+            <tr>
+                <th>Index</th>
+                <th>Cantidad</th>
+                <th>Accion</th>
+                <th>Nombre</th>
+                <th>Valor</th>
+            </tr>
+            <tr v-for="(item, index) in items" :key="index" >
+                <td>{{ index }}</td>
+                <td><span v-if="item.quantity === 0" style="color: red;">{{ item.quantity }}</span><span v-else>{{ item.quantity }}</span></td>
+                <td><button @click="item.quantity++" >+</button><button @click="item.quantity--" >-</button></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.value }}</td>
+            </tr>
+        </table>
+        
         <h4>N° Elementos: {{ sumaTotal }}</h4>
     </div>
     <!-- development version, includes helpful console warnings -->
