@@ -9,6 +9,7 @@
         table{
             text-align: center; border-collapse: collapse;
             color: white;
+            width: 100%;
             background-color: black;
         }
         table, th, tr, td{
@@ -41,7 +42,7 @@
             </tr>
             <tr v-for="(item, index) in items" :key="index" >
                 <td>{{ index }}</td>
-                <td><span v-if="item.quantity === 0" style="color: red;">{{ item.quantity }}</span><span v-else>{{ item.quantity }}</span></td>
+                <td><span v-if="item.quantity <= 0" style="color: red;">{{ item.quantity }}</span><span v-else>{{ item.quantity }}</span></td>
                 <td><button @click="item.quantity++" >+</button><button @click="item.quantity--" >-</button></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.value }}</td>
